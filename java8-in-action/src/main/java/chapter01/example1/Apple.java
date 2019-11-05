@@ -20,6 +20,11 @@ public class Apple {
         this.weight = weight;
     }
 
+    public Apple(String color, Integer weight) {
+        this.color = color;
+        this.weight = weight;
+    }
+
     public static boolean isHeavyApple(Apple apple) {
         return apple.getWeight() > 150;
     }

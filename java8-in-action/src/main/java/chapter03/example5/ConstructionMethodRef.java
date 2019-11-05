@@ -2,6 +2,7 @@ package chapter03.example5;
 
 import chapter01.example1.Apple;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -22,8 +23,10 @@ public class ConstructionMethodRef {
         c2 = (weight) -> new Apple(weight);
         Apple a2 = c2.apply(100);
 
-
-
+        //多参数构造
+        BiFunction<String, Integer, Apple> c3 = (color, weight) -> new Apple(color, weight);
+        c3 = Apple::new;
+        Apple a3 = c3.apply("red", 100);
 
     }
 }
