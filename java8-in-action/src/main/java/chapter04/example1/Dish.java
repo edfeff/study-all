@@ -11,5 +11,11 @@ import lombok.ToString;
 public class Dish {
     private Integer calories;
     private String name;
-
+    private Type type;
+    public enum Type {
+        BREAKFAST,
+        LUNCH,
+        SUPPER,
+        DINNER;
+    }
 }

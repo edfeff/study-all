@@ -19,6 +19,8 @@ public class DishSupplier {
         Dish dish = new Dish();
         dish.setCalories(random.nextInt(1000));
         dish.setName("dish-" + numbers.getAndIncrement());
+        Dish.Type type = Dish.Type.values()[random.nextInt(Dish.Type.values().length - 1)];
+        dish.setType(type);
         return dish;
     };
 
