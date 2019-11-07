@@ -10,19 +10,31 @@ import java.util.stream.Collectors;
 
 /**
  * Stream 菜单例子
+ *
  * @author wangpp
  */
 public class DishSteamExample {
     public static void main(String[] args) {
-        List<Dish> dishes = DishSupplier.getDishes(10);
+        List<Dish> dishes = DishSupplier.getDishes(15);
         //低卡菜单
         System.out.println(lowCaloriesMenu(dishes));
+        System.out.println(lowCaloriesMenuConcurrent(dishes));
         System.out.println(lowCaloriesMenuOldStyle(dishes));
     }
 
     @Java8Style
     public static List<String> lowCaloriesMenu(List<Dish> dishes) {
         List<String> lowCaloriesMenu = dishes.stream()
+                .filter(dish -> dish.getCalories() < 400)
+                .sorted(Comparator.comparing(Dish::getCalories))
+                .map(dish -> dish.getCalories() + ":" + dish.getName())
+                .collect(Collectors.toList());
+        return lowCaloriesMenu;
+    }
+
+    @Java8Style( "并发流" )
+    public static List<String> lowCaloriesMenuConcurrent(List<Dish> dishes) {
+        List<String> lowCaloriesMenu = dishes.parallelStream()
                 .filter(dish -> dish.getCalories() < 400)
                 .sorted(Comparator.comparing(Dish::getCalories))
                 .map(dish -> dish.getCalories() + ":" + dish.getName())
