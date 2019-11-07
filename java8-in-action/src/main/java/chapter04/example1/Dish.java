@@ -12,6 +12,8 @@ public class Dish {
     private Integer calories;
     private String name;
     private Type type;
+    private boolean vegetarian;
+
     public enum Type {
         BREAKFAST,
         LUNCH,
