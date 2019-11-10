@@ -29,8 +29,6 @@ public class NumberStream {
         System.out.println(max.getAsInt());
 //        转回对象流
         Stream<Integer> integerStream = intStream.boxed();
-
-
     }
 
     /**
