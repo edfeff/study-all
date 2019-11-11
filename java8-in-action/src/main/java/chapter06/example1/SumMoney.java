@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 
 /**
  * Collectors.summingInt
+ * summingDouble
+ * summingLong
  *
  * @author wangpp
  */

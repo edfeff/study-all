@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 
 /**
  * Collectors.summarizingInt
+ * summarizingDouble
+ * summarizingLong
  *
  * @author wangpp
  */
