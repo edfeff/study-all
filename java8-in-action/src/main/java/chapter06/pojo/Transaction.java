@@ -14,6 +14,12 @@ public class Transaction {
         Dollar
     }
 
+    public Transaction(Currency currency, Integer count) {
+        this.currency = currency;
+        this.count = count;
+    }
+
     private Currency currency;
     private Integer count;
+    private boolean isOld;
 }
