@@ -1,9 +1,6 @@
 package com.example.api.components;
 
-import com.example.api.pojo.Menu;
-import com.example.api.pojo.Token;
-import com.example.api.pojo.User;
-import com.example.api.pojo.UserDetail;
+import com.example.api.pojo.*;
 import com.example.api.rest.QueryInfo;
 import com.example.api.to.UserInfo;
 import com.example.api.to.UserTo;
@@ -14,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * @author wangpp
@@ -51,7 +49,8 @@ public class UserService {
         Menu usersMenu_1 = new Menu(1251, "用户列表", "users");
 //        Menu usersMenu_2 = new Menu(1252, "用户管理-B", "users/b");
 //        Menu usersMenu_3 = new Menu(1253, "用户管理-C", "users/c");
-        Menu rightsMenu_1 = new Menu(1261, "权限管理-A", "rights/a");
+        Menu rightsMenu_1 = new Menu(1261, "角色管理", "roles");
+        Menu rightsMenu_2 = new Menu(1261, "权限配置", "rights");
         Menu goodsMenu_1 = new Menu(1271, "商品管理-A", "goods/a");
         Menu ordersMenu_1 = new Menu(1281, "订单管理-A", "orders/a");
         Menu reportsMenu_1 = new Menu(1291, "数据统计-A", "reports/a");
@@ -60,6 +59,7 @@ public class UserService {
 //        usersMenu.addChildMenu(usersMenu_2);
 //        usersMenu.addChildMenu(usersMenu_3);
         rightsMenu.addChildMenu(rightsMenu_1);
+        rightsMenu.addChildMenu(rightsMenu_2);
         goodsMenu.addChildMenu(goodsMenu_1);
         ordersMenu.addChildMenu(ordersMenu_1);
         reportsMenu.addChildMenu(reportsMenu_1);
@@ -92,6 +92,15 @@ public class UserService {
 
         UserTo userTo = new UserTo(pagenum, 100, list);
         return userTo;
+    }
+
+    public List<Right> getAllRights(String type) {
+
+        List<Right> list = new ArrayList<>();
+        for (int i = 0; i < 40; i++) {
+            list.add(new Right(i + 1, "权限-" + i, i % 4, "/right/auth" + i, "pid-" + i));
+        }
+        return list;
     }
 }
 

@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.Arrays;
 import java.util.List;
 
@@ -96,6 +97,16 @@ public class ApiService {
     @PostMapping( "/addUser" )
     public ResponseData addUser(@RequestBody UserDetail userDetail) {
         return ResponseData.success();
+    }
+
+    @DeleteMapping( "/deleteUser/{uid}" )
+    public ResponseData addUser(@PathVariable Integer uid) {
+        return ResponseData.success();
+    }
+
+    @GetMapping( "/rights/{type}" )
+    public ResponseData addUser(@PathVariable String type) {
+        return ResponseData.success(userService.getAllRights(type));
     }
 
     public void setUser(User user, Errors errors) {
