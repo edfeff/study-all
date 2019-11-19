@@ -109,6 +109,17 @@ public class ApiService {
         return ResponseData.success(userService.getAllRights(type));
     }
 
+    @GetMapping( "/roles" )
+    public ResponseData getRoleList() {
+        return ResponseData.success(userService.getRoleList());
+    }
+
+    @DeleteMapping( "/roles/{roleId}/rights/{rightId}" )
+    public ResponseData getRoleList(@PathVariable Integer roleId,
+                                    @PathVariable Integer rightId) {
+        return ResponseData.success(userService.getRoleList());
+    }
+
     public void setUser(User user, Errors errors) {
         System.out.println(errors.getAllErrors());
         return;
