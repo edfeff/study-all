@@ -42,12 +42,18 @@
     </security:http>
     <!--    配置用户 角色 权限-->
     <security:authentication-manager>
-        <security:authentication-provider>
-            <security:user-service>
-                <!--               authorities 必须以 ROLE_ 开头 -->
-                <security:user name="wpp" password="wpp" authorities="ROLE_USER"/>
-                <security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-            </security:user-service>
-        </security:authentication-provider>
+        <!--        <security:authentication-provider>-->
+        <!--            <security:user-service>-->
+        <!--                &lt;!&ndash;               authorities 必须以 ROLE_ 开头 &ndash;&gt;-->
+        <!--                <security:user name="wpp" password="wpp" authorities="ROLE_USER"/>-->
+        <!--                <security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>-->
+        <!--            </security:user-service>-->
+        <!--        </security:authentication-provider>-->
+
+        <!--        配置自定义的 用户获取-->
+        <security:authentication-provider user-service-ref="myUserDetailService"/>
     </security:authentication-manager>
+
+    <!--    自定义用户获取-->
+    <bean class="com.wpp.security.MyUserDetailService" name="myUserDetailService"/>
 </beans>
