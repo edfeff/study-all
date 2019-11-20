@@ -13,14 +13,24 @@
         <!--        使用http basic 认证-->
         <!--        <security:http-basic></security:http-basic>-->
         <!--        http 表单登陆-->
-        <security:form-login></security:form-login>
 
         <!--        登不登不路都可以访问-->
         <security:intercept-url pattern="/product/index" access="permitAll()"/>
+        <security:intercept-url pattern="/userLogin" access="permitAll()"/>
         <!--        必须匿名访问，登陆后无法访问-->
         <!--        <security:intercept-url pattern="/product/index" access="isAnonymous()"/>-->
-
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
+
+        <!--
+            1 登陆页面       login-page
+            2 登陆请求
+        -->
+        <security:form-login login-page="/userLogin" login-processing-url="/come"></security:form-login>
+
+        <!--        关闭scrf-->
+        <security:csrf disabled="true"/>
+
+
     </security:http>
     <!--    配置用户 角色 权限-->
     <security:authentication-manager>
