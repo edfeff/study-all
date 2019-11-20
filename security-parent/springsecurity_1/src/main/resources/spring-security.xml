@@ -3,10 +3,24 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    <!--    配置http的安全选项
+    1 拦截什么资源
+    2 什么资源需要什么角色
+    3 定义认证方式： httpBasic FormLogin
+    4 定义登陆页面 定义登陆请求
+    -->
     <security:http>
+        <!--        使用http basic 认证-->
         <security:http-basic></security:http-basic>
+        <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
     </security:http>
+    <!--    配置用户 角色 权限-->
     <security:authentication-manager>
-        
+        <security:authentication-provider>
+            <security:user-service>
+                <!--               authorities 必须以 ROLE_ 开头 -->
+                <security:user name="wpp" password="wpp" authorities="ROLE_USER"/>
+            </security:user-service>
+        </security:authentication-provider>
     </security:authentication-manager>
 </beans>
