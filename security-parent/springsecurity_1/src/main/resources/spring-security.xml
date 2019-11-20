@@ -17,19 +17,27 @@
         <!--        登不登不路都可以访问-->
         <security:intercept-url pattern="/product/index" access="permitAll()"/>
         <security:intercept-url pattern="/userLogin" access="permitAll()"/>
+        <security:intercept-url pattern="/product/add" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/product/delete" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/product/update" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/product/list" access="hasRole('ROLE_USER')"/>
         <!--        必须匿名访问，登陆后无法访问-->
         <!--        <security:intercept-url pattern="/product/index" access="isAnonymous()"/>-->
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
+
 
         <!--
             1 登陆页面       login-page
             2 登陆请求
         -->
-        <security:form-login login-page="/userLogin" login-processing-url="/come"></security:form-login>
+        <security:form-login login-page="/userLogin" login-processing-url="/come"
+                             default-target-url="/product/index"></security:form-login>
 
         <!--        关闭scrf-->
         <security:csrf disabled="true"/>
 
+        <!--        定义错误页面-->
+        <security:access-denied-handler error-page="/error"></security:access-denied-handler>
 
     </security:http>
     <!--    配置用户 角色 权限-->
@@ -38,6 +46,7 @@
             <security:user-service>
                 <!--               authorities 必须以 ROLE_ 开头 -->
                 <security:user name="wpp" password="wpp" authorities="ROLE_USER"/>
+                <security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>
