@@ -2,10 +2,15 @@
 ### Java template
 # Compiled class file
 *.class
+org.eclipse.*
+**/.project
+**/.classpath
+**/.factorypath
+**/.vscode
 
 # Log file
 *.log
-
+**/.settings/
 # BlueJ files
 *.ctxt
 
