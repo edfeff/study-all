@@ -5,10 +5,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <security:http>
+<!--        <security:intercept-url pattern="/" access="permitAll()"/>-->
+<!--        <security:intercept-url pattern="/login" access="permitAll()"/>-->
+<!--        <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>-->
+<!--        <security:csrf disabled="true"/>-->
         <security:form-login></security:form-login>
     </security:http>
 
     <security:authentication-manager>
+        <!--        <security:authentication-provider user-service-ref="myUserDetailService">-->
         <security:authentication-provider>
             <security:user-service>
                 <security:user name="wpp" authorities="ROLE_USER" password="wpp"/>
@@ -16,4 +21,5 @@
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>
+    <bean class="com.wpp.service.MyUserDetailService" id="myUserDetailService"/>
 </beans>
