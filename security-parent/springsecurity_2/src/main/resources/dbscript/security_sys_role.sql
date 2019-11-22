@@ -1,0 +1,2 @@
+INSERT INTO security.sys_role (id, role_name, role_desc, create_time, enabled, remark) VALUES (1, 'ROLE_ADMIN', 'admin', '2019-11-22 16:08:17', 1, null);
+INSERT INTO security.sys_role (id, role_name, role_desc, create_time, enabled, remark) VALUES (2, 'ROLE_USER', 'common user', '2019-11-22 16:08:17', 1, null);

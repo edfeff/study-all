@@ -1,0 +1,2 @@
+INSERT INTO security.sys_user (id, username, real_name, password, create_time, last_login_time, enabled, expired, locked, credentials_expired, remark) VALUES (1, 'admin', 'admin', 'admin', '2019-11-22 16:08:17', null, 1, 1, 1, 1, null);
+INSERT INTO security.sys_user (id, username, real_name, password, create_time, last_login_time, enabled, expired, locked, credentials_expired, remark) VALUES (2, 'wpp', 'wangpengpeng', 'wpp', '2019-11-22 16:08:17', null, 1, 1, 1, 1, null);
