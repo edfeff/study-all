@@ -23,7 +23,7 @@
         <!--        <spring.version>5.2.1.RELEASE</spring.version>-->
         <spring.version>4.3.10.RELEASE</spring.version>
         <spring.security.version>4.2.3.RELEASE</spring.security.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.12</junit.version>
         <lombok.version>1.18.10</lombok.version>
         <jstl.version>1.2</jstl.version>
         <servlet.version>2.5</servlet.version>
@@ -91,6 +91,11 @@
                 <artifactId>spring-security-web</artifactId>
                 <version>${spring.security.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
             <!--            -->
             <dependency>
                 <groupId>junit</groupId>
@@ -141,6 +146,7 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
+
 
         </dependencies>
     </dependencyManagement>

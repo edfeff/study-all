@@ -17,6 +17,10 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.wpp.domain"/>
     </bean>
+    <!--mapper-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.wpp.mapper"/>
+    </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>

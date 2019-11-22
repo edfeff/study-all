@@ -32,9 +32,12 @@
         -->
         <security:form-login login-page="/userLogin" login-processing-url="/come"
                              default-target-url="/product/index"
-                             authentication-success-handler-ref="myAuthenticationSuccessHandler"
-                             authentication-failure-handler-ref="myAuthenticationFailureHandler"
         ></security:form-login>
+        <!--        <security:form-login login-page="/userLogin" login-processing-url="/come"-->
+        <!--                             default-target-url="/product/index"-->
+        <!--                             authentication-success-handler-ref="myAuthenticationSuccessHandler"-->
+        <!--                             authentication-failure-handler-ref="myAuthenticationFailureHandler"-->
+        <!--        ></security:form-login>-->
 
         <!--        关闭scrf-->
         <security:csrf disabled="true"/>
@@ -61,6 +64,6 @@
     <bean class="com.wpp.security.MyUserDetailService" name="myUserDetailService"/>
 
     <!--    自定义成功处理器，适合前后端分离-->
-    <bean class="com.wpp.security.MyAuthenticationSuccessHandler" name="myAuthenticationSuccessHandler"/>
-    <bean class="com.wpp.security.MyAuthenticationFailureHandler" name="myAuthenticationFailureHandler"/>
+    <!--    <bean class="com.wpp.security.MyAuthenticationSuccessHandler" name="myAuthenticationSuccessHandler"/>-->
+    <!--    <bean class="com.wpp.security.MyAuthenticationFailureHandler" name="myAuthenticationFailureHandler"/>-->
 </beans>
