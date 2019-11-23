@@ -10,8 +10,12 @@
         <security:intercept-url pattern="/product/delete" access="hasAuthority('PRODUCT_DELETE')"/>
         <security:intercept-url pattern="/product/update" access="hasAuthority('PRODUCT_UPDATE')"/>
         <security:intercept-url pattern="/userLogin" access="permitAll()"/>
+        <security:intercept-url pattern="/imageCode" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
         <security:csrf disabled="true"/>
+
+        <security:custom-filter ref="imageCodeAuthenticationFilter" before="FORM_LOGIN_FILTER"/>
+
         <security:form-login login-page="/userLogin" authentication-success-forward-url="/index"></security:form-login>
         <security:access-denied-handler error-page="/error"/>
     </security:http>
@@ -29,4 +33,9 @@
     </security:authentication-manager>
     <bean id="myUserDetailService" class="com.wpp.service.MyUserDetailService"/>
     <bean id="passwordEncoder" class="com.wpp.security.MyPasswordEncoder"/>
+    <bean id="imageCodeAuthenticationFilter" class="com.wpp.security.ImageCodeAuthenticationFilter">
+        <property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"/>
+    </bean>
+    <bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
+          id="simpleUrlAuthenticationFailureHandler"/>
 </beans>

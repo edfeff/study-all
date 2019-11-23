@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,13 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        if (StringUtils.isEmpty(s)) {
+            throw new UsernameNotFoundException(s + " must not be empty");
+        }
         User user = userMapper.findByUsername(s);
+        if (user == null) {
+            throw new UsernameNotFoundException(s + " not exist");
+        }
         List<Permission> permission = userMapper.findPermissionByUsername(s);
         if (permission != null) {
             List<GrantedAuthority> grantedAuthorities = permission.stream()
