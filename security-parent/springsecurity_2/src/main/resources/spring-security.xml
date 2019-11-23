@@ -12,12 +12,13 @@
         <security:intercept-url pattern="/userLogin" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
         <security:csrf disabled="true"/>
-        <security:form-login login-page="/userLogin"></security:form-login>
+        <security:form-login login-page="/userLogin" authentication-success-forward-url="/index"></security:form-login>
         <security:access-denied-handler error-page="/error"/>
     </security:http>
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="myUserDetailService">
+            <security:password-encoder ref="passwordEncoder"/>
             <!--        <security:authentication-provider>-->
             <!--            <security:user-service>-->
             <!--                <security:user name="wpp" authorities="PRODUCT_LIST" password="wpp"/>-->
@@ -26,5 +27,6 @@
             <!--            </security:user-service>-->
         </security:authentication-provider>
     </security:authentication-manager>
-    <bean class="com.wpp.service.MyUserDetailService" id="myUserDetailService"/>
+    <bean id="myUserDetailService" class="com.wpp.service.MyUserDetailService"/>
+    <bean id="passwordEncoder" class="com.wpp.security.MyPasswordEncoder"/>
 </beans>

@@ -2,6 +2,7 @@ package com.wpp.mapper;
 
 import com.wpp.domain.Permission;
 import com.wpp.domain.User;
+import com.wpp.security.MyPasswordEncoder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,5 +40,18 @@ public class UserMapperTest {
         Assert.assertNotNull(wpp);
         Assert.assertEquals(wpp.size(), 2);
 
+    }
+
+    @Test
+    public void updateUser() {
+        User user = userMapper.findByUsername("admin");
+        MyPasswordEncoder passwordEncoder = new MyPasswordEncoder();
+        String pass = passwordEncoder.encode("admin");
+        user.setPassword(pass);
+        userMapper.updateUser(user);
+        User wpp = userMapper.findByUsername("admin");
+        String password = wpp.getPassword();
+        boolean matches = passwordEncoder.matches("admin", password);
+        Assert.assertTrue(matches);
     }
 }

@@ -23,6 +23,14 @@
         <result property="permName" column="perm_Name"/>
         <result property="permTag" column="perm_Tag"/>
     </resultMap>
+    <update id="updateUser" parameterType="user">
+        update sys_user
+        set real_name =#{realName},
+            username  =#{username},
+            password  = #{password}
+        where id = #{id}
+
+    </update>
 
     <select id="findByUsername" resultMap="userResultMap" parameterType="string">
         select *
