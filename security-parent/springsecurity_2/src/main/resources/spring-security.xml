@@ -5,20 +5,25 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <security:http>
-<!--        <security:intercept-url pattern="/" access="permitAll()"/>-->
-<!--        <security:intercept-url pattern="/login" access="permitAll()"/>-->
-<!--        <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>-->
-<!--        <security:csrf disabled="true"/>-->
-        <security:form-login></security:form-login>
+        <security:intercept-url pattern="/product/list" access="hasAuthority('PRODUCT_LIST')"/>
+        <security:intercept-url pattern="/product/add" access="hasAuthority('PRODUCT_ADD')"/>
+        <security:intercept-url pattern="/product/delete" access="hasAuthority('PRODUCT_DELETE')"/>
+        <security:intercept-url pattern="/product/update" access="hasAuthority('PRODUCT_UPDATE')"/>
+        <security:intercept-url pattern="/userLogin" access="permitAll()"/>
+        <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
+        <security:csrf disabled="true"/>
+        <security:form-login login-page="/userLogin"></security:form-login>
+        <security:access-denied-handler error-page="/error"/>
     </security:http>
 
     <security:authentication-manager>
-        <!--        <security:authentication-provider user-service-ref="myUserDetailService">-->
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user name="wpp" authorities="ROLE_USER" password="wpp"/>
-                <security:user name="admin" authorities="ROLE_ADMIN" password="admin"/>
-            </security:user-service>
+        <security:authentication-provider user-service-ref="myUserDetailService">
+            <!--        <security:authentication-provider>-->
+            <!--            <security:user-service>-->
+            <!--                <security:user name="wpp" authorities="PRODUCT_LIST" password="wpp"/>-->
+            <!--                <security:user name="admin" authorities="PRODUCT_LIST,PRODUCT_ADD,PRODUCT_DELETE,PRODUCT_UPDATE"-->
+            <!--                               password="admin"/>-->
+            <!--            </security:user-service>-->
         </security:authentication-provider>
     </security:authentication-manager>
     <bean class="com.wpp.service.MyUserDetailService" id="myUserDetailService"/>

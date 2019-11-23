@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext.xml")
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration( "classpath:applicationContext.xml" )
 public class UserMapperTest {
     @Autowired
     UserMapper userMapper;
@@ -24,7 +24,7 @@ public class UserMapperTest {
         Assert.assertNotNull(wpp);
         Assert.assertNotNull(admin);
         Assert.assertTrue(wpp.getId().equals(2));
-        Assert.assertTrue(admin.getId().equals(2));
+        Assert.assertTrue(admin.getId().equals(1));
         Assert.assertTrue(wpp.getUsername().equals("wpp"));
         Assert.assertTrue(admin.getUsername().equals("admin"));
     }
