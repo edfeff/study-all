@@ -37,5 +37,7 @@
         <property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"/>
     </bean>
     <bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
-          id="simpleUrlAuthenticationFailureHandler"/>
+          id="simpleUrlAuthenticationFailureHandler">
+        <property name="defaultFailureUrl" value="/error"></property>
+    </bean>
 </beans>

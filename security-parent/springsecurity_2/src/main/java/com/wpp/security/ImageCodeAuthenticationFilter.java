@@ -39,6 +39,7 @@ public class ImageCodeAuthenticationFilter extends OncePerRequestFilter {
             } catch (AuthenticationException e) {
                 authenticationFailureHandler.onAuthenticationFailure(request, response, e);
 //                throw e;
+                return;
             }
         }
         filterChain.doFilter(request, response);
