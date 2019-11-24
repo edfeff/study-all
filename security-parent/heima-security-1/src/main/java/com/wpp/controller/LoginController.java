@@ -40,4 +40,18 @@ public class LoginController {
         return "用户：" + userDto.getFullname() + ":" + userDto.getMobile();
     }
 
+    @GetMapping( value = "/logout/{username}", produces = {"text/plain;charset=utf-8;"} )
+    public String userLogout(@PathVariable( value = "username", required = false ) String username, HttpSession session) {
+        if (StringUtils.isEmpty(username)) {
+            return "输入正确的用户名称";
+        }
+        UserDto userDto = (UserDto) session.getAttribute(UserDto.SESSION_USER_KEY);
+        if (userDto == null ||
+                !userDto.getUsername().equals(username)) {
+            return "用户未登录,请登陆后再执行此操作";
+        }
+        session.setAttribute(UserDto.SESSION_USER_KEY, null);
+        session.invalidate();
+        return userDto.getFullname() + "正常退出";
+    }
 }

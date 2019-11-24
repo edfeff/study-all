@@ -1,5 +1,7 @@
 package com.wpp.model;
 
+import java.util.Set;
+
 /**
  * @author wangpp
  */
@@ -12,6 +14,7 @@ public class UserDto {
     private String password;
     private String fullname;
     private String mobile;
+    private Set<String> authorities;
 
     public UserDto(String id, String username, String password, String fullname, String mobile) {
         this.id = id;
@@ -19,6 +22,15 @@ public class UserDto {
         this.password = password;
         this.fullname = fullname;
         this.mobile = mobile;
+    }
+
+    public UserDto(String id, String username, String password, String fullname, String mobile, Set<String> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.mobile = mobile;
+        this.authorities = authorities;
     }
 
     public String getId() {
@@ -59,5 +71,13 @@ public class UserDto {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Set<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<String> authorities) {
+        this.authorities = authorities;
     }
 }

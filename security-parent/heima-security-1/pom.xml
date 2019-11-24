@@ -60,7 +60,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <port>8080</port>
-                    <path>/s3</path>
+                    <path>/</path>
                     <server>tomcat7</server>
                 </configuration>
             </plugin>
