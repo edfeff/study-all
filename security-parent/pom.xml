@@ -15,6 +15,7 @@
         <module>a-helloworld</module>
         <module>springsecurity_1</module>
         <module>springsecurity_2</module>
+        <module>heima-security-1</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,7 +27,8 @@
         <junit.version>4.12</junit.version>
         <lombok.version>1.18.10</lombok.version>
         <jstl.version>1.2</jstl.version>
-        <servlet.version>2.5</servlet.version>
+        <!--        <servlet.version>2.5</servlet.version>-->
+        <servlet.version>3.1.0</servlet.version>
         <jackson.version>2.9.10.1</jackson.version>
         <!--        mybatis-->
         <mybatis.version>3.4.5</mybatis.version>
@@ -109,12 +111,20 @@
                 <artifactId>jstl</artifactId>
                 <version>${jstl.version}</version>
             </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>javax.servlet</groupId>-->
+            <!--                <artifactId>servlet-api</artifactId>-->
+            <!--                <version>${servlet.version}</version>-->
+            <!--                &lt;!&ndash;                <scope>provided</scope>&ndash;&gt;-->
+            <!--            </dependency>-->
+            <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
             <dependency>
                 <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
+                <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet.version}</version>
-                <!--                <scope>provided</scope>-->
+                <scope>provided</scope>
             </dependency>
+
 
             <!--        -->
             <dependency>
