@@ -12,7 +12,7 @@
     <artifactId>security-parent</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>a-helloworld</module>
+<!--        <module>a-helloworld</module>-->
         <module>springsecurity_1</module>
         <module>springsecurity_2</module>
         <module>heima-security-1</module>
