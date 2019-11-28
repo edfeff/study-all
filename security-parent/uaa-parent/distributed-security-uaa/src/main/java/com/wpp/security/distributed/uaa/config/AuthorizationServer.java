@@ -103,9 +103,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
 //                oauth/token_key
-                .tokenKeyAccess("premitAll()")
+                .tokenKeyAccess("permitAll()")
 //                oauth/check_token
-                .checkTokenAccess("premitAll()")
+                .checkTokenAccess("permitAll()")
                 //允许表单认证
                 .allowFormAuthenticationForClients();
     }
