@@ -1,4 +1,4 @@
-package com.wpp.security.distributed.uaa.config;
+package com.wpp.security.distributed.order.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

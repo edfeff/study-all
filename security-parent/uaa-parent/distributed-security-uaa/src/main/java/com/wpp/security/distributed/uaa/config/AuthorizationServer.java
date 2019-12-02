@@ -15,7 +15,11 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.Arrays;
 
 /**
  * OAuth2 服务器
@@ -37,6 +41,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    JwtAccessTokenConverter jwtAccessTokenConverter;
+
     @Bean
     public AuthorizationServerTokenServices tokenServices() {
         DefaultTokenServices services = new DefaultTokenServices();
@@ -45,6 +52,12 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         services.setSupportRefreshToken(true);
         //token 存储
         services.setTokenStore(tokenStore);
+
+        //使用jwt 增强
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter));
+        services.setTokenEnhancer(tokenEnhancerChain);
+
         //token 有效期
         services.setAccessTokenValiditySeconds(7200);
         services.setRefreshTokenValiditySeconds(259200);

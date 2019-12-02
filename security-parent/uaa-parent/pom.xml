@@ -14,6 +14,7 @@
     <modules>
         <module>distributed-security-uaa</module>
         <module>distributed-security-order</module>
+        <module>distributed-security-order-jwt</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
