@@ -72,7 +72,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 //                false -需要客户点击授权
                 .autoApprove(false)
 //                回调地址
-                .redirectUris("http://www.baidu.com");
+                .redirectUris("http://localhost:53021/order/oauth2");
     }
 
 

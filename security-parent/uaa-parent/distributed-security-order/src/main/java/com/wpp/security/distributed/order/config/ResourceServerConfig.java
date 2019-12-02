@@ -1,5 +1,7 @@
 package com.wpp.security.distributed.order.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,9 +16,11 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
  * @author wangpp
  */
 @Configuration
+@EnableConfigurationProperties( UAAServerProperties.class )
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-    private static final String RESOUECE_ID = "res1";
+    @Autowired
+    UAAServerProperties uaaServerProperties;
 
     /**
      * 配置客户端
@@ -28,10 +32,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         //资源id
-        resources.resourceId(RESOUECE_ID)
+        resources.resourceId(uaaServerProperties.getResourceId())
 //                验证令牌的服务
-                .tokenServices(tokenServices())
-//
+                .tokenServices(tokenServices(uaaServerProperties))
                 .stateless(true);
     }
 
@@ -42,6 +45,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/oauth2").permitAll()
 //                资源的scope
                 .antMatchers("/**").access("#oauth2.hasScope('all')")
                 .and()
@@ -51,11 +55,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     }
 
     @Bean
-    public ResourceServerTokenServices tokenServices() {
+    @Autowired
+    public ResourceServerTokenServices tokenServices(UAAServerProperties props) {
         RemoteTokenServices services = new RemoteTokenServices();
-        services.setCheckTokenEndpointUrl("http://localhost:53020/uaa/oauth/check_token");
-        services.setClientId("c1");
-        services.setClientSecret("c1");
+        services.setCheckTokenEndpointUrl(props.getCheckTokenUrl());
+        services.setClientId(props.getClientId());
+        services.setClientSecret(props.getClientSecret());
         return services;
     }
 }
