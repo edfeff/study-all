@@ -52,7 +52,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/oauth2").permitAll()
 //                资源的scope
-                .antMatchers("/**").access("#oauth2.hasScope('all')")
+                .antMatchers("/**").access("#oauth2.hasAnyScope('ROLE_ADMIN')")
                 .and()
                 .csrf().disable()
 //                使用token验证，不用记录Session

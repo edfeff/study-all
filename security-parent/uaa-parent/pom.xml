@@ -11,6 +11,7 @@
 
     <artifactId>uaa-parent</artifactId>
     <packaging>pom</packaging>
+    <name>UAA_PARENT</name>
     <modules>
         <module>distributed-security-uaa</module>
         <module>distributed-security-order</module>

@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -19,6 +18,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 
 /**
@@ -73,20 +73,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
      * @throws Exception
      */
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("c1")
-                .secret(new BCryptPasswordEncoder().encode("c1"))
-//                资源代码
-                .resourceIds("res1")
-                //授权类型
-                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
-//              授权范围
-                .scopes("all")
-//                false -需要客户点击授权
-                .autoApprove(false)
-//                回调地址
-                .redirectUris("http://localhost:53021/order/oauth2");
+        clients.withClientDetails(clientDetailsService);
     }
+
+    @Autowired
+    DataSource dataSource;
 
 
     /**
