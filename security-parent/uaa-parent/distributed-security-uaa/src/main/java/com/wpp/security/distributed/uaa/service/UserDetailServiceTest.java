@@ -1,4 +1,4 @@
-package com.wpp.security.distributed.uaa.config;
+package com.wpp.security.distributed.uaa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,8 +14,8 @@ import java.util.Arrays;
 /**
  * @author wangpp
  */
-@Service
-public class MyUserDetailService implements UserDetailsService {
+//@Service
+public class UserDetailServiceTest implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 

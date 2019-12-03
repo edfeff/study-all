@@ -43,6 +43,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     JwtAccessTokenConverter jwtAccessTokenConverter;
+    
+    @Autowired
+    DataSource dataSource;
 
     @Bean
     public AuthorizationServerTokenServices tokenServices() {
@@ -72,12 +75,10 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
      * @param clients
      * @throws Exception
      */
+    @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.withClientDetails(clientDetailsService);
     }
-
-    @Autowired
-    DataSource dataSource;
 
 
     /**
@@ -86,6 +87,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
      * @param endpoints
      * @throws Exception
      */
+    @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
 //                密码模式需要
@@ -104,6 +106,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
      * @param security
      * @throws Exception
      */
+    @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
 //                oauth/token_key

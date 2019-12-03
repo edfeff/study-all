@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wpp.security.distributed.uaa.mapper.UserMapper">
+    <resultMap id="userResultMap" type="user">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="realName" column="real_name"/>
+        <result property="password" column="password"/>
+        <result property="createTime" column="create_time"/>
+        <result property="lastLoginTime" column="last_login_time"/>
+        <result property="enabled" column="enabled"/>
+        <result property="expired" column="expired"/>
+        <result property="locked" column="locked"/>
+        <result property="credentialsExpired" column="credentials_expired"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <resultMap id="permissionResultMap" type="permission">
+        <id property="id" column="id"/>
+        <result property="permName" column="perm_Name"/>
+        <result property="permTag" column="perm_Tag"/>
+    </resultMap>
+    <update id="updateUser" parameterType="user">
+        update sys_user
+        set real_name =#{realName},
+            username  =#{username},
+            password  = #{password}
+        where id = #{id}
+
+    </update>
+
+    <select id="findByUsername" resultMap="userResultMap" parameterType="string">
+        select *
+        from sys_user
+        where username = #{value}
+    </select>
+
+    <select id="findPermissionByUsername" parameterType="string" resultMap="permissionResultMap">
+        select sp.*
+        from sys_user
+                 join sys_user_role sur on sys_user.id = sur.user_id
+                 join sys_role sr on sur.role_id = sr.id
+                 join sys_role_permission srp on sr.id = srp.role_id
+                 join sys_permission sp on srp.permission_id = sp.id
+        where username = #{value};
+
+    </select>
+</mapper>

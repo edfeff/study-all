@@ -21,12 +21,13 @@ public class TokenConfig {
         return new InMemoryTokenStore();
     }
 
-    @Value( "${uaa.config.jwtKey}" )
+    @Value("${uaa.config.jwtKey}")
     private String jwtKey;
 
     @Bean
     @Primary
     public TokenStore jwtTokenStore() {
+
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
