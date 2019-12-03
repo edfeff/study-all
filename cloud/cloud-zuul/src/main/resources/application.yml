@@ -6,13 +6,32 @@ server:
 #
 #  配置zuul的路由跳转
 zuul:
+  #  同一前缀
+  prefix: /rest
   routes:
+    #    微服务名-别名路由
+    cloud-eureka-order:
+      path: /order-service/**
+      #将你的服务转发到我网关的本地接口上
+      url: forward:/local
+    #     路径路由
     user:
       path: /user/**
       url: http://localhost:8080/
     order:
       path: /order/**
       url: http://localhost:8081/
+    api:
+      path: /api/**
+      url: forward:/local
+  #      禁用过滤器
+  BlackIPFilter:
+    pre:
+      disable: true
+ip:
+  filter:
+    black: 127.0.0.1,0.0.0.0
+    white: 8.8.8.8,88.88.88.88
 #    注册中心配置
 eureka:
   instance:
