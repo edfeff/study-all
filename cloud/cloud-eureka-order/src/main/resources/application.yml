@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: cloud-eureka-order
+server:
+  port: 8081
+#    注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}_${spring.cloud.client.ip-address}_${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+  client:
+    fetch-registry: true
+    register-with-eureka: true
