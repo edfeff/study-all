@@ -42,3 +42,9 @@ eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
+#传值
+filter:
+  test:
+    passvalue: false
+    blocking: false
+    error: false
