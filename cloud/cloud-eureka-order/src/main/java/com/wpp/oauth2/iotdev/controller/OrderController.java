@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,8 +21,10 @@ public class OrderController {
     OrderService orderService;
 
     @GetMapping
-    public List<Order> orderList() {
-        return orderService.orderList();
+    public List<Order> orderList(HttpServletRequest request) {
+        int localPort = request.getLocalPort();
+        List<Order> orders = orderService.orderList();
+        orders.get(0).setName("服务端口" + localPort);
+        return orders;
     }
-
 }

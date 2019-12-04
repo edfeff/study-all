@@ -13,3 +13,8 @@ eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
+---
+spring:
+  profiles: dev
+server:
+  port: 8082

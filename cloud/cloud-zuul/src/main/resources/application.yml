@@ -28,6 +28,21 @@ zuul:
   BlackIPFilter:
     pre:
       disable: true
+  #开启重试机制
+  retryable: true
+ribbon:
+  #  请求超时时间
+  connectTimeout: 500
+  #  请求处理时间
+  readTimeout: 5000
+  #  最大重试次数
+  maxAutoRetries: 1
+  #  切换实例的最大重试次数
+  maxAutoRetriesNextServer: 3
+  #  对所有操作都进行重试
+  okToRetryOnAllOperations: true
+  #  对执行的Http码重试
+  retryableStatusCodes: 500,404,502
 ip:
   filter:
     black: 127.0.0.1,0.0.0.0
@@ -42,9 +57,10 @@ eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
-#传值
+#测试开启选项
 filter:
   test:
     passvalue: false
     blocking: false
     error: false
+#重试配置
