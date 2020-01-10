@@ -8,6 +8,8 @@
     <modules>
         <module>java8-in-action</module>
         <module>security-parent</module>
+        <module>source -spring</module>
+        <module>hazelcast-demo</module>
     </modules>
 
     <packaging>pom</packaging>

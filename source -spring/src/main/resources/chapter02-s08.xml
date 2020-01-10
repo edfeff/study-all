@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="chapter02.s01.MyTestBean" id="myTestBean">
+        <description>this is a desc info</description>
+        <meta key="author" value="wpp"/>
+        <meta key="version" value="1.0"/>
+<!--        <lookup-method name="getTestStr" bean="null"/>-->
+<!--        <replaced-method name="setTestStr" replacer="null"/>-->
+        <constructor-arg name="testStr" value="x1"/>
+        <property name="testStr" value="x2"/>
+        <qualifier value="t1"/>
+    </bean>
+
+</beans>

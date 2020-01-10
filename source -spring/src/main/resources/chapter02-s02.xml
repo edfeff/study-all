@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--    多层beans嵌套-->
+    <beans xml:id="level-1">
+        <beans xml:id="level-2">
+            <beans xml:id="level-3">
+                <bean class="chapter02.s01.MyTestBean" id="myTestBean"/>
+            </beans>
+        </beans>
+    </beans>
+</beans>

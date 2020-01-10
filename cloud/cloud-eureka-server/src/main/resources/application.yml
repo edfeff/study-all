@@ -10,3 +10,13 @@ eureka:
     server:
       enable-self-preservation: false
       eviction-interval-timer-in-ms: 5000
+  #配置展示页面的路径,默认 /
+  dashboard:
+    path: /
+    # 是否开启页面
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans

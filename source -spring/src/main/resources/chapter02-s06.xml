@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="chapter02.s01.MyTestBean" name="myTestBean" lazy-init="true" scope="singleton"/>
+    <!--    别名注册-->
+    <alias name="myTestBean" alias="myTestBeanAlias_1"/>
+    <!--    给别名注册别名-->
+    <alias name="myTestBeanAlias_1" alias="myTestBeanAlias_2"/>
+    <import resource="classpath:chapter02-s07.xml"/>
+</beans>

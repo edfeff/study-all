@@ -21,7 +21,7 @@ public class LoginConfig {
         return ClientRegistration.withRegistrationId("iotdev")  // (1)
                 .clientId("c2")  // (2)
                 .clientSecret("c1")  // (3)
-//                .clientAuthenticationMethod(ClientAuthenticationMethod.POST)  // (4)
+                .clientAuthenticationMethod(ClientAuthenticationMethod.POST)  // (4)
                 .redirectUriTemplate("{baseUrl}/login/oauth2/code/{registrationId}")  // (5)
                 .clientName("AAA")       // (6)
                 .tokenUri("http://localhost:53020/uaa/oauth/token")  // (7)
