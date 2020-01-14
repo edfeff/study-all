@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean name="p1" class="chapter03.s01.constructargs.Person">
+        <constructor-arg name="name" value="p1"/>
+        <constructor-arg name="age" value="11"/>
+        <constructor-arg name="email" value="23423@qq.com"/>
+    </bean>
+    <bean name="p2" class="chapter03.s01.constructargs.Person">
+        <constructor-arg index="0" value="p2"/>
+        <constructor-arg index="1" value="12"/>
+        <constructor-arg index="2" value="23423@qq.com"/>
+    </bean>
+    <bean name="p3" class="chapter03.s01.constructargs.Person">
+        <constructor-arg name="friends">
+            <list>
+                <value type="java.lang.String">a1</value>
+                <value type="java.lang.String">a2</value>
+                <value type="java.lang.String">a3</value>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean name="p4" class="chapter03.s01.constructargs.Person">
+        <constructor-arg name="metas">
+            <map>
+                <entry key="author" value="wpp"/>
+                <entry key="date" value="123"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean name="p5" class="chapter03.s01.constructargs.Person">
+        <constructor-arg name="metas">
+            <null></null>
+        </constructor-arg>
+    </bean>
+    <bean name="p6" class="chapter03.s01.constructargs.Person">
+        <constructor-arg name="properties">
+            <props>
+                <prop key="name">11</prop>
+                <prop key="age">11</prop>
+                <prop key="page">11</prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+    <bean name="p7" class="chapter03.s01.constructargs.Person">
+        <constructor-arg name="set">
+            <set>
+                <value type="java.lang.String">A</value>
+                <value type="java.lang.String">A</value>
+                <value type="java.lang.String">B</value>
+            </set>
+        </constructor-arg>
+    </bean>
+    <bean name="p8" class="chapter03.s01.constructargs.Person">
+        <constructor-arg name="arr">
+            <array>
+                <value type="java.lang.Integer">1</value>
+                <value type="java.lang.Integer">1</value>
+                <value type="java.lang.Integer">1</value>
+            </array>
+        </constructor-arg>
+    </bean>
+    <bean name="p9" class="chapter03.s01.constructargs.Person">
+        <qualifier value="NP"/>
+    </bean>
+</beans>

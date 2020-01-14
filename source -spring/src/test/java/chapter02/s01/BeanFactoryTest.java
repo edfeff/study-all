@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Map;
 
 public class BeanFactoryTest {
     /**
@@ -243,5 +244,24 @@ public class BeanFactoryTest {
         MyTestBean2 myTestBean2 = factory.getBean("myTestBean2", MyTestBean2.class);
         Assert.assertEquals(myTestBean2.getTestStr(), "testStr2");
     }
+
+    @Test
+    public void tes10() {
+        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+        int i = reader.loadBeanDefinitions(new ClassPathResource("chapter02-s01.xml"));
+        Assert.assertEquals(1, i);
+
+        MyTestBean bean = factory.getBean(MyTestBean.class);
+
+        Map<String, MyTestBean> myTestBeanMap = factory.getBeansOfType(MyTestBean.class);
+
+        Assert.assertEquals(1, myTestBeanMap.size());
+
+        Assert.assertTrue(myTestBeanMap.containsKey("myTestBean"));
+
+        Assert.assertEquals(bean, myTestBeanMap.get("myTestBean"));
+    }
+
 
 }

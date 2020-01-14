@@ -70,7 +70,25 @@ public class StudyBeanDefinitionDocumentReader extends DefaultBeanDefinitionDocu
             try {
                 // Register the final decorated instance.
                 log.info("注册BeanDefinition,注册别名");
-                BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
+//                BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
+
+//            模拟  BeanDefinitionReaderUtils 的工作 ，分为两步
+
+//                1 注册BeanDefinition
+                /*
+                细节： 注册BeanDefinition，并不是
+
+                 */
+                getReaderContext().getRegistry().registerBeanDefinition(bdHolder.getBeanName(), bdHolder.getBeanDefinition());
+
+//                2 注册别名
+                String[] aliases = bdHolder.getAliases();
+                if (aliases != null) {
+                    for (String alias : aliases) {
+                        getReaderContext().getRegistry().registerAlias(bdHolder.getBeanName(), alias);
+                    }
+                }
+
             } catch (BeanDefinitionStoreException ex) {
                 getReaderContext().error("Failed to register bean definition with name '" +
                         bdHolder.getBeanName() + "'", ele, ex);
