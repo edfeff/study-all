@@ -1,22 +1,15 @@
 package com.example.api;
 
-import com.example.api.rest.ApiService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class ApiApplicationTests {
 
     @Test
-    void contextLoads() {
-    }
+    void t1() {
+//        jdbc:mysql://localhost:3306/security
 
-    @Autowired
-    ApiService apiService;
-
-    @Test
-    void setUser() {
 
     }
+
 }

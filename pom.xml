@@ -8,8 +8,10 @@
     <modules>
         <module>java8-in-action</module>
         <module>security-parent</module>
+        <module>al-from-game</module>
         <module>source -spring</module>
         <module>hazelcast-demo</module>
+        <module>al-from-game-template</module>
     </modules>
 
     <packaging>pom</packaging>
