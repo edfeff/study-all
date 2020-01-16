@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--    这样子会导致Spring依赖检查的失效，Sprign无法检查出这两个Bean存在循环依赖，从而程序陷入死循环-->
+    <bean class="chapter02.s01.MyTestBean" id="myTestBean" name="m,m1,m2,m3" depends-on="p2"/>
+    <bean class="chapter02.s01.MyTestBean" id="myTestBean2" name="p1,p2" depends-on="m"/>
+</beans>
